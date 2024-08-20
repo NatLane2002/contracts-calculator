@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futures Contracts Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Futures Contracts Calculator</h1>
+        <div class="form-section">
+            <div class="input-container">
+                <input type="number" id="riskAmount" placeholder="Enter Risk Amount" step="0.01">
+                <input type="number" id="points" placeholder="Enter Points" step="0.25">
+            </div>
+            <div class="button-container">
+                <button class="calcBtn" onclick="calculate()">Calculate</button>
+                <button class="marginTop toggleBtn" onclick="toggleContracts()">Toggle</button>
+                <button class="marginTop clearBtn" onclick="clearFields()">Clear</button>
+            </div>
+        </div>
+        <div class="results-section">
+            <div class="result-box">
+                <h2 id="sp500-label">Micro S&P500 (MES)</h2>
+                <p id="sp500">0.0</p>
+            </div>
+            <div class="result-box">
+                <h2 id="nasdaq-label">Micro Nasdaq (MNQ)</h2>
+                <p id="nasdaq">0.0</p>
+            </div>
+            <div class="result-box">
+                <h2 id="dowJones-label">Micro DowJones (MYM)</h2>
+                <p id="dowJones">0.0</p>
+            </div>
+        </div>
+        <p class="smallText">Disclaimer: I am not responsible if you blow your account while using this calculator</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
