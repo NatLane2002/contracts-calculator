@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Futures Contracts Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Dark Mode Toggle Button (Fixed at Top Left) -->
+  <button class="darkModeBtn" id="darkModeBtn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  
+  <!-- Radio Buttons (Fixed at Top Right) with Static Mini Abbreviations -->
+  <div class="fixed-radio-container">
+    <label>
+      <input type="radio" name="instrument" value="sp500" />
+      <span id="sp500-radio-label">ES</span>
+    </label>
+    <label>
+      <input type="radio" name="instrument" value="nasdaq" checked />
+      <span id="nasdaq-radio-label">NQ</span>
+    </label>
+    <label>
+      <input type="radio" name="instrument" value="dowJones" />
+      <span id="dowJones-radio-label">YM</span>
+    </label>
+  </div>
+  
+  <div class="container">
+    <!-- Toggle Switch for Mini/Micro Mode (Top Right of the container) -->
+    <div class="container-toggle">
+        <label class="toggle-switch">
+        <!-- The toggle is unchecked by default meaning Micro mode -->
+        <input type="checkbox" id="contractToggle" onchange="toggleContracts()">
+        <span class="slider"></span>
+        </label>
+    </div>
+    
+    <h1>Futures Contracts Calculator</h1>
+    
+    <!-- Input Section with Inline Calculate Button -->
+    <div class="form-section">
+      <div class="input-container">
+        <input type="number" id="riskAmount" placeholder="Enter Risk Amount" step="0.01" />
+        <input type="number" id="points" placeholder="Enter Points" step="0.25" />
+        <button class="calcBtn" onclick="calculate()">Calculate</button>
+      </div>
+    </div>
+    
+    <!-- Results Section -->
+    <div class="results-section">
+      <div class="result-box" id="sp500-box">
+        <h2 id="sp500-label">MES</h2>
+        <p id="sp500">0.0</p>
+      </div>
+      <div class="result-box" id="nasdaq-box">
+        <h2 id="nasdaq-label">MNQ</h2>
+        <p id="nasdaq">0.0</p>
+      </div>
+      <div class="result-box" id="dowJones-box">
+        <h2 id="dowJones-label">MYM</h2>
+        <p id="dowJones">0.0</p>
+      </div>
+    </div>
+    
+    <p class="smallText">
+      Disclaimer: I am not responsible if you blow your account while using this calculator
+    </p>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

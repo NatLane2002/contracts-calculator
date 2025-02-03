@@ -1,0 +1,264 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 600px;
+  z-index: 1;
+}
+
+/* Toggle Switch Container in top right of the container */
+.container-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+h1 {
+  padding-top: 10px; /* Provide space for the toggle switch */
+  padding-bottom: 10px;
+  font-size: 40px;
+}
+
+.form-section {
+  margin-bottom: 20px;
+}
+
+/* Inline Input Container with Calculate Button */
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.input-container input {
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.calcBtn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.calcBtn:hover {
+  background-color: #218838;
+}
+
+/* Fixed Radio Container (Top Right of the viewport) */
+.fixed-radio-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 8px;
+  border-radius: 4px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: inline-flex;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.fixed-radio-container label {
+  cursor: pointer;
+  margin: 0;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: background-color 0.4s, transform 0.4s;
+  border-radius: 26px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: transform 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* Results Section */
+.results-section {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.result-box {
+  background-color: #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  padding-top: 30px;
+  width: 100%;
+  height: 100px;
+  max-width: 180px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 32px;
+  margin: 0;
+}
+
+p {
+  font-size: 38px;
+  font-weight: bold;
+  margin: 10px 0 0;
+}
+
+.smallText {
+  margin-top: 20px;
+  font-size: 11px;
+}
+
+/* Dark Mode Toggle Button - Fixed at Top Left with Teal Color */
+.darkModeBtn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #009688;
+  color: #fff;
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.darkModeBtn:hover {
+  background-color: #00796b;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #222;
+  color: #ddd;
+}
+
+/* White Borders in Dark Mode */
+body.dark-mode .container {
+  background-color: #333;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  border: 1px solid #fff;
+}
+
+body.dark-mode input {
+  background-color: #555;
+  color: #ddd;
+  border: 1px solid #fff;
+}
+
+body.dark-mode .result-box {
+  background-color: #444;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  border: 1px solid #fff;
+}
+
+body.dark-mode .fixed-radio-container {
+  background: rgba(50, 50, 50, 0.9);
+  color: #ddd;
+  border: 1px solid #fff;
+}
+
+/* Media Query: Only Adjusting the Container and its Contents for Responsiveness */
+@media (max-width: 600px) {
+  .container {
+      width: 95%;
+      padding: 15px;
+  }
+  h1 {
+      font-size: 28px;
+      padding-top: 15px;
+  }
+  .input-container {
+      flex-direction: column;
+      gap: 15px;
+  }
+  .input-container input,
+  .calcBtn {
+      width: 100%;
+      max-width: none;
+  }
+  .results-section {
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+  }
+  .result-box {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      padding: 15px;
+  }
+  h2 {
+      font-size: 24px;
+  }
+  p {
+      font-size: 28px;
+  }
+}
