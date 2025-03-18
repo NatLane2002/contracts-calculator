@@ -9,7 +9,7 @@ function numContractsCalculator(numberOfPoints, multiplier, pointValue, riskAmou
   return riskAmount / result;
 }
 
-function calculate() {
+function calculateIfBothInputsFilled() {
   const points = parseFloat(document.getElementById('points').value);
   const riskAmount = parseFloat(document.getElementById('riskAmount').value);
 
@@ -66,12 +66,9 @@ function updateVisibility() {
   document.getElementById('dowJones-box').style.display = (selected === 'dowJones') ? 'block' : 'none';
 }
 
-// Trigger calculate() when Enter is pressed in the points input field.
-document.getElementById('points').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-    calculate();
-  }
-});
+// Add input event listeners for auto-calculation
+document.getElementById('riskAmount').addEventListener('input', calculateIfBothInputsFilled);
+document.getElementById('points').addEventListener('input', calculateIfBothInputsFilled);
 
 // Update result visibility when radio buttons change.
 document.querySelectorAll('input[name="instrument"]').forEach((elem) => {
@@ -93,4 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   updateVisibility();
+  
+  // Auto-calculate if there are already values in the inputs (e.g. after page refresh)
+  calculateIfBothInputsFilled();
 });
