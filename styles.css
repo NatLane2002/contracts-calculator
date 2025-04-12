@@ -230,6 +230,43 @@ input:checked + .slider:before {
   box-shadow: 0 0 0 2px var(--accent);
 }
 
+/* Table View Button */
+.table-view-btn {
+  display: none; /* Hidden by default, shown via JS when risk amount entered */
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.5rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.table-view-btn svg {
+  transition: transform 0.2s ease;
+  width: 14px;
+  height: 14px;
+}
+
+.table-view-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.table-view-btn:hover svg {
+  transform: scale(1.1);
+}
+
 /* Results Section */
 .results-section {
   display: grid;
