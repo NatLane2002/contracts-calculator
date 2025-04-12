@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contracts Table - Futures Calculator</title>
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="table-styles.css" />
+  <!-- Add Google Fonts for improved typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="table-page">
+  <!-- Dark/Light Mode Toggle Button -->
+  <button class="darkModeBtn" id="darkModeBtn" onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">
+    <!-- Moon icon - shown in light mode -->
+    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    <!-- Sun icon - shown in dark mode -->
+    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+  </button>
+  
+  <!-- Back Button -->
+  <a href="index.html" class="back-btn" aria-label="Back to calculator">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+    <span>Back</span>
+  </a>
+  
+  <div class="container table-page-container">
+    <h1>Contracts By Stop Loss Range</h1>
+    <p class="risk-display">Risk Amount: <span class="risk-amount-value">$<span id="riskAmount">0</span></span></p>
+    
+    <!-- Mode Toggle -->
+    <div class="container-toggle table-toggle">
+      <span class="toggle-label">Micro</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="contractToggle" onchange="toggleContractsAndRefreshTable()" aria-label="Toggle between Micro and Mini contracts">
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">Mini</span>
+    </div>
+    
+    <!-- Instrument Tabs -->
+    <div class="instrument-tabs">
+      <button class="tab-btn" data-instrument="sp500">ES / MES</button>
+      <button class="tab-btn" data-instrument="nasdaq">NQ / MNQ</button>
+      <button class="tab-btn" data-instrument="dowJones">YM / MYM</button>
+    </div>
+    
+    <!-- Tables Container -->
+    <div class="tables-wrapper">
+      <!-- ES / MES Table -->
+      <div class="table-section" id="sp500-table">
+        <h2 id="sp500-table-title">MES Contracts</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Stop Loss Range</th>
+                <th>Contracts</th>
+              </tr>
+            </thead>
+            <tbody id="sp500-contracts">
+              <!-- Will be filled by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- NQ / MNQ Table -->
+      <div class="table-section" id="nasdaq-table" style="display: none;">
+        <h2 id="nasdaq-table-title">MNQ Contracts</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Stop Loss Range</th>
+                <th>Contracts</th>
+              </tr>
+            </thead>
+            <tbody id="nasdaq-contracts">
+              <!-- Will be filled by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- YM / MYM Table -->
+      <div class="table-section" id="dowJones-table" style="display: none;">
+        <h2 id="dowJones-table-title">MYM Contracts</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Stop Loss Range</th>
+                <th>Contracts</th>
+              </tr>
+            </thead>
+            <tbody id="dowJones-contracts">
+              <!-- Will be filled by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <p class="disclaimer">
+      Disclaimer: I am not responsible if you blow your account while using this calculator
+    </p>
+  </div>
+
+  <script src="table-script.js"></script>
+</body>
+</html> 
