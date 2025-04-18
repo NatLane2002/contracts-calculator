@@ -18,13 +18,14 @@ function calculateIfBothInputsFilled() {
     showTableViewButton();
   } else {
     hideTableViewButton();
-    // Reset all results to 0 if risk amount is empty
+  }
+
+  // Reset all results to 0 if EITHER input is empty or invalid
+  if (isNaN(points) || isNaN(riskAmount) || riskAmount <= 0 || points <= 0) {
     document.getElementById('sp500').textContent = "0.0";
     document.getElementById('nasdaq').textContent = "0.0";
     document.getElementById('dowJones').textContent = "0.0";
-  }
-
-  if (isNaN(points) || isNaN(riskAmount) || riskAmount <= 0) {
+    document.getElementById('gold').textContent = "0.0";
     return; // Exit if inputs are invalid.
   }
 
@@ -39,16 +40,19 @@ function updateResults(points, riskAmount) {
   const sp500Multiplier = isMicro ? 1.25 : 12.5;
   const nasdaqMultiplier = isMicro ? 0.5 : 5;
   const dowJonesMultiplier = isMicro ? 0.5 : 5;
+  const goldMultiplier = isMicro ? 1 : 10; // MGC is 10oz, GC is 100oz
 
   // Calculate contract numbers.
   const sp500 = numContractsCalculator(points, sp500Multiplier, 0.25, riskAmount);
   const nasdaq = numContractsCalculator(points, nasdaqMultiplier, 0.25, riskAmount);
   const dowJones = numContractsCalculator(points, dowJonesMultiplier, 1, riskAmount);
+  const gold = numContractsCalculator(points, goldMultiplier, 0.1, riskAmount); // Gold point value is $0.10
 
   // Update result fields.
   document.getElementById('sp500').textContent = sp500.toFixed(1);
   document.getElementById('nasdaq').textContent = nasdaq.toFixed(1);
   document.getElementById('dowJones').textContent = dowJones.toFixed(1);
+  document.getElementById('gold').textContent = gold.toFixed(1);
 
   updateVisibility();
 }
@@ -63,6 +67,7 @@ function toggleContracts() {
   document.getElementById('sp500-label').textContent = isMicro ? "MES" : "ES";
   document.getElementById('nasdaq-label').textContent = isMicro ? "MNQ" : "NQ";
   document.getElementById('dowJones-label').textContent = isMicro ? "MYM" : "YM";
+  document.getElementById('gold-label').textContent = isMicro ? "MGC" : "GC";
 
   if (lastPoints !== null && lastRiskAmount !== null) {
     updateResults(lastPoints, lastRiskAmount);
@@ -75,6 +80,7 @@ function updateVisibility() {
   document.getElementById('sp500-box').style.display = (selected === 'sp500') ? 'block' : 'none';
   document.getElementById('nasdaq-box').style.display = (selected === 'nasdaq') ? 'block' : 'none';
   document.getElementById('dowJones-box').style.display = (selected === 'dowJones') ? 'block' : 'none';
+  document.getElementById('gold-box').style.display = (selected === 'gold') ? 'block' : 'none';
 }
 
 // Show the table view button
