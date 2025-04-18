@@ -70,6 +70,7 @@ function updateTableTitles() {
   document.getElementById('sp500-table-title').textContent = isMicro ? "MES Contracts" : "ES Contracts";
   document.getElementById('nasdaq-table-title').textContent = isMicro ? "MNQ Contracts" : "NQ Contracts";
   document.getElementById('dowJones-table-title').textContent = isMicro ? "MYM Contracts" : "YM Contracts";
+  document.getElementById('gold-table-title').textContent = isMicro ? "MGC Contracts" : "GC Contracts";
 }
 
 // Switch between tables
@@ -99,35 +100,51 @@ function generateTables() {
   document.getElementById('sp500-contracts').innerHTML = '';
   document.getElementById('nasdaq-contracts').innerHTML = '';
   document.getElementById('dowJones-contracts').innerHTML = '';
+  document.getElementById('gold-contracts').innerHTML = '';
   
   // Set multipliers based on mode
   const sp500Multiplier = isMicro ? 1.25 : 12.5;
   const nasdaqMultiplier = isMicro ? 0.5 : 5;
   const dowJonesMultiplier = isMicro ? 0.5 : 5;
+  const goldMultiplier = isMicro ? 1 : 10; // MGC is 10oz, GC is 100oz
   
   // Generate data for each table
-  generateTableData('sp500-contracts', sp500Multiplier, 0.25);
-  generateTableData('nasdaq-contracts', nasdaqMultiplier, 0.25);
-  generateTableData('dowJones-contracts', dowJonesMultiplier, 1);
+  generateTableData('sp500-contracts', sp500Multiplier, 0.25, false);
+  generateTableData('nasdaq-contracts', nasdaqMultiplier, 0.25, false);
+  generateTableData('dowJones-contracts', dowJonesMultiplier, 1, false);
+  generateTableData('gold-contracts', goldMultiplier, 0.1, true); // Gold uses smaller ranges
 }
 
 // Generate table data for different SL ranges
-function generateTableData(tableId, multiplier, pointValue) {
+function generateTableData(tableId, multiplier, pointValue, isGold) {
   const tableBody = document.getElementById(tableId);
   
-  // Define stop loss ranges (5-point increments)
-  const ranges = [
-    { min: 0, max: 5 },
-    { min: 5, max: 10 },
-    { min: 10, max: 15 },
-    { min: 15, max: 20 },
-    { min: 20, max: 25 },
-    { min: 25, max: 30 },
-    { min: 30, max: 35 },
-    { min: 35, max: 40 },
-    { min: 40, max: 45 },
-    { min: 45, max: 50 }
-  ];
+  // Define stop loss ranges based on instrument type
+  const ranges = isGold 
+    ? [ // Smaller ranges for Gold (0-2, 2-4, etc.)
+        { min: 0, max: 2 },
+        { min: 2, max: 4 },
+        { min: 4, max: 6 },
+        { min: 6, max: 8 },
+        { min: 8, max: 10 },
+        { min: 10, max: 12 },
+        { min: 12, max: 14 },
+        { min: 14, max: 16 },
+        { min: 16, max: 18 },
+        { min: 18, max: 20 }
+      ]
+    : [ // Standard ranges for other instruments (5-point increments)
+        { min: 0, max: 5 },
+        { min: 5, max: 10 },
+        { min: 10, max: 15 },
+        { min: 15, max: 20 },
+        { min: 20, max: 25 },
+        { min: 25, max: 30 },
+        { min: 30, max: 35 },
+        { min: 35, max: 40 },
+        { min: 40, max: 45 },
+        { min: 45, max: 50 }
+      ];
   
   // Generate rows for each range
   ranges.forEach(range => {
