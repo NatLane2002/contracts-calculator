@@ -47,6 +47,7 @@
       <button class="tab-btn" data-instrument="sp500">ES / MES</button>
       <button class="tab-btn" data-instrument="nasdaq">NQ / MNQ</button>
       <button class="tab-btn" data-instrument="dowJones">YM / MYM</button>
+      <button class="tab-btn" data-instrument="gold">GC / MGC</button>
     </div>
     
     <!-- Tables Container -->
@@ -99,6 +100,24 @@
               </tr>
             </thead>
             <tbody id="dowJones-contracts">
+              <!-- Will be filled by JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- GC / MGC Table -->
+      <div class="table-section" id="gold-table" style="display: none;">
+        <h2 id="gold-table-title">MGC Contracts</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Stop Loss Range</th>
+                <th>Contracts</th>
+              </tr>
+            </thead>
+            <tbody id="gold-contracts">
               <!-- Will be filled by JavaScript -->
             </tbody>
           </table>
